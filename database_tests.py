@@ -2,8 +2,8 @@ import unittest
 from os import remove
 
 # Import Database Model
-from ..package.database.sqlitedb import SqliteDB
-from ..package.database.mysqldb import MySQLDB
+from package.database.sqlitedb import SqliteDB
+from package.database.mysqldb import MySQLDB
 
 
 class TestSqliteDatabase(unittest.TestCase):

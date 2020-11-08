@@ -48,4 +48,3 @@ class SqliteDB(Database):
               'attributeCount integer,' \
               'methodCount integer)'
         return self.query(sql)
-
