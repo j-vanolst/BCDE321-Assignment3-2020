@@ -1,0 +1,49 @@
+{
+  "name": "es6-sample-project",
+  "version": "1.22.2",
+  "description": "An ES6 sample project using Rollup, Bublé, Sass",
+  "author": "Jonatas Walker",
+  "homepage": "https://github.com/jonataswalker/es6-sample-project",
+  "license": "MIT",
+  "main": "build/es6-sample-project.min.js",
+  "keywords": [
+    "es6",
+    "es6 project",
+    "rollup",
+    "buble",
+    "sample project"
+  ],
+  "rollup": {
+    "entry": "src/js/main.js",
+    "dest": "build/es6-sample-project.js",
+    "moduleName": "SampleProject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonataswalker/es6-sample-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonataswalker/es6-sample-project/issues"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.5.3",
+    "clean-css": "^3.4.21",
+    "eslint": "^3.12.0",
+    "eslint-config-jwalker": "^1.14.0",
+    "node-sass": "^3.13.0",
+    "node-sass-json-importer": "^2.1.1",
+    "nodemon": "^1.11.0",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^2.6.0",
+    "rollup": "^0.36.4",
+    "rollup-plugin-buble": "^0.14.0",
+    "rollup-plugin-json": "^2.0.2",
+    "uglify-js": "^2.7.5"
+  },
+  "eslintConfig": {
+    "extends": "jwalker"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}

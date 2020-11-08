@@ -1,0 +1,31 @@
+.#{$namespace}#{$container} {
+	position: absolute;
+	width: $container-width;
+	height: $container-height;
+	line-height: $container-height;
+	text-align: center;
+	font-family: inherit;
+	font-weight: $font-weight-regular;
+	overflow: hidden;
+	border-radius: 3px;
+	box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
+	@include font-size(16);
+	@include background-radial-gradient(#FF8A65, #FF7043);
+	@include clearfix;
+        
+        *,
+        *::before,
+        *::after {
+          box-sizing: inherit;
+        }
+
+	&:hover {
+		cursor: grab;
+	}
+	
+	&.dragging {
+		cursor: grabbing;
+	}
+}
