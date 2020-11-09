@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 
 
 class Analyser(metaclass=ABCMeta):
-    def __init__(self, path):
+    def __init__(self, path = None):
         self.path = path
         self.filenames = []
         self.files = []
@@ -37,4 +37,8 @@ class Analyser(metaclass=ABCMeta):
 
     @abstractmethod
     def attribute_count(self):
+        pass
+
+    @abstractmethod
+    def set_path(self, path):
         pass

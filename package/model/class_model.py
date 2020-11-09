@@ -1,7 +1,7 @@
 import re
 
-from model.abc.classABC import ClassABC
-from model.method import Method
+from package.model.abc.classABC import ClassABC
+from package.model.method import Method
 
 method_regex = r'^\s*[a-zA-Z0-9]+(\(){1}[a-zA-Z0-9,\s]*(\)){1}(?=\s\{)'
 attribute_regex = r'(?<=this\.)[a-zA-Z0-9]*(?=\s=\s[a-zA-Z0-9\[\]\{\}])'

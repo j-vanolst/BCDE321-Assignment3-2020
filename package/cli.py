@@ -2,9 +2,9 @@ from cmd import Cmd
 import argparse
 
 # Local Imports
-from database.sqlitedb import SqliteDB
-from model.analyser import JSAnalyser
-from graph.grapher import Grapher
+from package.database.sqlitedb import SqliteDB
+from package.model.analyser import JSAnalyser
+from package.graph.grapher import Grapher
 
 # Argument Parser
 parser = argparse.ArgumentParser()
@@ -24,6 +24,8 @@ class Menu(Cmd):
         Cmd.__init__(self)
         self.prompt = ">>> "
         self.db = SqliteDB(args.dbname)
+        self.analyser = JSAnalyser()
+        self.grapher = Grapher()
 
     def do_add_record(self, path: str):
         """
@@ -34,12 +36,14 @@ class Menu(Cmd):
         analysis
         :return: None
         """
-        analyser = JSAnalyser(path)
+        self.analyser.set_path(path)
+        self.analyser.get_filenames()
+        self.analyser.read_files()
 
-        file_count = analyser.file_count()
-        class_count = analyser.class_count()
-        attribute_count = analyser.attribute_count()
-        method_count = analyser.method_count()
+        file_count = self.analyser.file_count()
+        class_count = self.analyser.class_count()
+        attribute_count = self.analyser.attribute_count()
+        method_count = self.analyser.method_count()
 
         sql = f'insert into analysis (path, fileCount, classCount,' \
               f' attributeCount, methodCount) values ' \
@@ -101,8 +105,10 @@ class Menu(Cmd):
         file / folder for analysis
         :return: None
         """
-        analyser = JSAnalyser(path)
-        print(analyser)
+        self.analyser.set_path(path)
+        self.analyser.get_filenames()
+        self.analyser.read_files()
+        print(self.analyser)
 
     def do_draw_class_diagram(self, path: str):
         """
@@ -112,10 +118,16 @@ class Menu(Cmd):
         file / folder for analysis
         :return: None
         """
-        analyser = JSAnalyser(path)
-        classes = analyser.get_classes()
-        grapher = Grapher(classes)
-        grapher.render()
+        self.analyser.set_path(path)
+        self.analyser.get_filenames()
+        self.analyser.read_files()
+
+        classes = self.analyser.get_classes()
+        self.grapher.set_classes(classes)
+        
+        self.grapher.configure_labels()
+        self.grapher.add_nodes()
+        self.grapher.render()
 
     def do_quit(self, line):
         print("Quitting...")

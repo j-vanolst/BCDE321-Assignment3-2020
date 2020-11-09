@@ -1,7 +1,7 @@
 import re
 
-from model.abc.fileABC import FileABC
-from model.class_model import Class
+from package.model.abc.fileABC import FileABC
+from package.model.class_model import Class
 
 class_regex = r'(?<=class\s)[a-zA-Z0-9]+((?:extends)?\s[a-zA-Z0-9]+)*(?=\s\{)'
 

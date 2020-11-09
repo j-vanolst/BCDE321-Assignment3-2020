@@ -1,4 +1,4 @@
-from model.abc.methodABC import MethodABC
+from package.model.abc.methodABC import MethodABC
 
 
 class Method(MethodABC):

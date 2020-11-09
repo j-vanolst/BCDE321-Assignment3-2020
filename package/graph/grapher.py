@@ -1,7 +1,7 @@
 from graphviz import Digraph, render
 
 class Grapher:
-    def __init__(self, classes):
+    def __init__(self, classes = []):
         self.graph = Digraph()
         self.classes = classes
         self.labels = []
@@ -36,3 +36,7 @@ class Grapher:
             render('dot', 'pdf', 'output/output')
         else:
             print('Nothing to render...')
+
+    def set_classes(self, classes):
+        self.classes = classes
+

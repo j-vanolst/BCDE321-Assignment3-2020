@@ -2,15 +2,15 @@ import os
 import re
 import glob
 
-from model.abc.analyserABC import Analyser
-from model.file import File
+from package.model.abc.analyserABC import Analyser
+from package.model.file import File
 
 filename_regex = r'(?<=[a-zA-Z0-9])*[a-zA-Z0-9]+\.[a-zA-Z0-9]*'
 
 
 class JSAnalyser(Analyser):
 
-    def __init__(self, path):
+    def __init__(self, path = '.'):
         super().__init__(path)
         self.filenames = []
         self.files = []
@@ -97,3 +97,7 @@ class JSAnalyser(Analyser):
         for aFile in self.files:
             output_string += str(aFile)
         return output_string
+    
+    def set_path(self, path: str):
+        self.path = path
+
