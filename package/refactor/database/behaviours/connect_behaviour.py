@@ -6,10 +6,28 @@ import sqlite3
 
 class ConnectBehaviour(metaclass=ABCMeta):
     @abstractmethod
-    def connect(self):
+    def connect(self, ref):
         pass
 
 
 class SqliteConnect(ConnectBehaviour):
     def connect(self, ref):
-        ref.db = sqlite3.connect(ref.database)
+        try:
+            ref.db = sqlite3.connect(ref.database)
+        except Exception:
+            return False
+
+        return True
+
+
+class MySQLConnect(ConnectBehaviour):
+    def connect(self, ref):
+        if ref.db:
+            ref.db.close()
+        try:
+            ref.db = mysql.connector.connect(
+                host=ref.address, user=ref.username, password=ref.password, database=ref.database)
+        except Exception:
+            return False
+
+        return True

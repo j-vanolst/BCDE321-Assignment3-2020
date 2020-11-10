@@ -1,14 +1,28 @@
 import unittest
 from os import remove
 
-# Import Database Model
+# Import Database Models
 from package.database.sqlitedb import SqliteDB
 from package.database.mysqldb import MySQLDB
+from package.refactor.database.database import Database
+
+# Import Database Behaviours
+from package.refactor.database.behaviours.setup_behaviour import SqliteSetup, MySQLSetup
+from package.refactor.database.behaviours.query_behaviour import SqliteQuery, MySQLQuery
+from package.refactor.database.behaviours.connect_behaviour import SqliteConnect, MySQLConnect
+from package.refactor.database.behaviours.fetch_behaviour import SqliteFetch, MySQLFetch
 
 
 class TestSqliteDatabase(unittest.TestCase):
     def setUp(self):
-        self.database = SqliteDB('unittest.db')
+        if after_refactor == 1:
+            self.database = Database('unittest.db')
+            self.database.set_connect_behaviour(SqliteConnect())
+            self.database.set_setup_behaviour(SqliteSetup())
+            self.database.set_query_behaviour(SqliteQuery())
+            self.database.set_fetch_behaviour(SqliteFetch())
+        else:
+            self.database = SqliteDB('unittest.db')
 
     def tearDown(self):
         self.database = None
@@ -58,8 +72,16 @@ class TestSqliteDatabase(unittest.TestCase):
 
 class TestMySQLDatabase(unittest.TestCase):
     def setUp(self):
-        self.database = MySQLDB('bcde321_assignment',
-                                '127.0.0.1', 'root', 'password')
+        if after_refactor == 1:
+            self.database = Database(
+                'bcde321_assignment', '127.0.0.1', 'root', 'password')
+            self.database.set_connect_behaviour(MySQLConnect())
+            self.database.set_setup_behaviour(MySQLSetup())
+            self.database.set_query_behaviour(MySQLQuery())
+            self.database.set_fetch_behaviour(MySQLFetch())
+        else:
+            self.database = MySQLDB('bcde321_assignment',
+                                    '127.0.0.1', 'root', 'password')
 
     def tearDown(self):
         self.database = None
@@ -75,6 +97,7 @@ class TestMySQLDatabase(unittest.TestCase):
     def test_database_setup_fail(self):
         self.database.password = 'incorrect'
         result = self.database.setup()
+        print(result)
         self.assertFalse(result)
 
     def test_database_query_fail(self):
@@ -109,4 +132,5 @@ class TestMySQLDatabase(unittest.TestCase):
 
 
 if __name__ == '__main__':
+    after_refactor = int(input('Run refactored version of tests? 1=yes 0=no'))
     unittest.main(verbosity=2)
