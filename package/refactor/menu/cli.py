@@ -44,7 +44,9 @@ class Menu(Cmd):
               f' attributeCount, methodCount) values ' \
               f'("{path}", {file_count}, {class_count},' \
               f' {attribute_count}, {method_count})'
-        self.db.query(sql)
+        result = self.db.query(sql)
+
+        return result
 
     def do_get_record(self, path: str):
         """
@@ -66,6 +68,7 @@ class Menu(Cmd):
                       f'Class Count: {aResult[2]}\n'
                       f'Attribute Count: {aResult[3]}\n'
                       f'Method Count: {aResult[4]}')
+        return results
 
     def do_delete_record(self, path: str):
         """
@@ -76,7 +79,9 @@ class Menu(Cmd):
         :return: None
         """
         sql = f'delete from analysis where path="{path}"'
-        self.db.query(sql)
+        result = self.db.query(sql)
+        
+        return result
 
     def do_list_records(self, line):
         """
@@ -91,6 +96,8 @@ class Menu(Cmd):
         else:
             for aResult in results:
                 print(aResult)
+        
+        return results
 
     def do_analyse(self, path: str):
         """
@@ -104,6 +111,8 @@ class Menu(Cmd):
         self.analyser.get_filenames()
         self.analyser.read_files()
         print(self.analyser)
+
+        return True
 
     def do_draw_class_diagram(self, path: str):
         """
@@ -123,6 +132,8 @@ class Menu(Cmd):
         self.grapher.configure_labels()
         self.grapher.add_nodes()
         self.grapher.render()
+
+        return True
 
     def do_quit(self, line):
         print("Quitting...")

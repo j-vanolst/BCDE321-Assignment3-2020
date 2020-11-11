@@ -1,5 +1,5 @@
 import unittest
-
+from os import remove
 
 class TestSqliteCli(unittest.TestCase):
     def setUp(self):
@@ -13,6 +13,10 @@ class TestSqliteCli(unittest.TestCase):
 
     def tearDown(self):
         self.cli = None
+        try:
+            remove('unittest.db')
+        except:
+            print('Nothing to remove')
 
     def test_cli_has_grapher(self):
         result = False
@@ -30,6 +34,53 @@ class TestSqliteCli(unittest.TestCase):
         result = False
         if self.cli.analyser:
             result = True
+        self.assertTrue(result)
+    
+    def test_menu_add_record(self):
+        result = self.cli.do_add_record('package/sample-es6/src/js')
+        self.assertTrue(result)
+    
+    def test_menu_get_record(self):
+        self.cli.do_add_record('package/sample-es6/src/js')
+        result = self.cli.do_get_record('package/sample-es6/src/js')
+        expected = [('package/sample-es6/src/js', 4, 3, 2, 6)]
+        self.assertEqual(result, expected)
+    
+    def test_menu_get_record_no_results(self):
+        result = self.cli.do_get_record('empty path')
+        expected = []
+        self.assertEqual(result, expected)
+    
+    def test_menu_delete_record(self):
+        self.cli.do_add_record('package/sample-es6/src/js')
+        result = self.cli.do_delete_record('package/sample-es6/src/js')
+        self.assertTrue(result)
+    
+    def test_menu_list_records(self):
+        self.cli.do_add_record('package/sample-es6/src/js')
+        result = self.cli.do_list_records('')
+        expected = [('package/sample-es6/src/js',)]
+        self.assertEqual(result, expected)
+    
+    def test_menu_list_records_no_results(self):
+        result = self.cli.do_list_records('')
+        expected = []
+        self.assertEqual(result, expected)
+    
+    def test_menu_analyse(self):
+        result = self.cli.do_analyse('package/sample-es6/src/js')
+        self.assertTrue(result)
+    
+    def test_menu_draw_class_diagram(self):
+        result = self.cli.do_draw_class_diagram('package/sample-es6/src/js')
+        self.assertTrue(result)
+    
+    def test_menu_draw_class_diagram_empty(self):
+        result = self.cli.do_draw_class_diagram('empty path')
+        self.assertTrue(result)
+    
+    def test_menu_quit(self):
+        result = self.cli.do_quit('')
         self.assertTrue(result)
 
 

@@ -7,15 +7,15 @@ from package.model.analyser import JSAnalyser
 from package.graph.grapher import Grapher
 
 # Argument Parser
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    'dbname',
-    metavar='DB',
-    type=str,
-    default='database.db',
-    nargs='?',
-    help='A database name for storing analyses')
-args = parser.parse_args()
+# parser = argparse.ArgumentParser()
+# parser.add_argument(
+#     'dbname',
+#     metavar='DB',
+#     type=str,
+#     default='database.db',
+#     nargs='?',
+#     help='A database name for storing analyses')
+# args = parser.parse_args()
 
 
 class Menu(Cmd):
@@ -23,9 +23,11 @@ class Menu(Cmd):
     def __init__(self):
         Cmd.__init__(self)
         self.prompt = ">>> "
-        self.db = SqliteDB(args.dbname)
+        self.db = SqliteDB('unittest.db')
         self.analyser = JSAnalyser()
         self.grapher = Grapher()
+
+        self.db.setup()
 
     def do_add_record(self, path: str):
         """
@@ -49,7 +51,10 @@ class Menu(Cmd):
               f' attributeCount, methodCount) values ' \
               f'("{path}", {file_count}, {class_count},' \
               f' {attribute_count}, {method_count})'
-        self.db.query(sql)
+        
+        result = self.db.query(sql)
+        return result
+
 
     def do_get_record(self, path: str):
         """
@@ -71,6 +76,7 @@ class Menu(Cmd):
                       f'Class Count: {aResult[2]}\n'
                       f'Attribute Count: {aResult[3]}\n'
                       f'Method Count: {aResult[4]}')
+        return results
 
     def do_delete_record(self, path: str):
         """
@@ -81,7 +87,9 @@ class Menu(Cmd):
         :return: None
         """
         sql = f'delete from analysis where path="{path}"'
-        self.db.query(sql)
+        result = self.db.query(sql)
+
+        return result
 
     def do_list_records(self, line):
         """
@@ -97,6 +105,8 @@ class Menu(Cmd):
             for aResult in results:
                 print(aResult)
 
+        return results
+
     def do_analyse(self, path: str):
         """
         Syntax: analyse [path]
@@ -109,6 +119,8 @@ class Menu(Cmd):
         self.analyser.get_filenames()
         self.analyser.read_files()
         print(self.analyser)
+
+        return True
 
     def do_draw_class_diagram(self, path: str):
         """
@@ -123,17 +135,14 @@ class Menu(Cmd):
         self.analyser.read_files()
 
         classes = self.analyser.get_classes()
+
         self.grapher.set_classes(classes)
-        
         self.grapher.configure_labels()
         self.grapher.add_nodes()
         self.grapher.render()
+        
+        return True
 
     def do_quit(self, line):
         print("Quitting...")
         return True
-
-
-if __name__ == "__main__":
-    menu = Menu()
-    menu.cmdloop()
