@@ -1,15 +1,5 @@
 import unittest
 
-from package.cli import Menu
-
-# Import Builders
-from package.refactor.menu.menu_director import MenuDirector
-from package.refactor.menu.sqlite_menu_builder import SqliteMenuBuilder
-from package.refactor.menu.mysql_menu_builder import MySQLMenuBuilder
-
-# Import Database (Before Refactor)
-from package.database.mysqldb import MySQLDB
-
 
 class TestSqliteCli(unittest.TestCase):
     def setUp(self):
@@ -81,4 +71,15 @@ class TestMysqlCli(unittest.TestCase):
 if __name__ == '__main__':
     after_refactor = int(
         input('Run refactored version of tests? 1=yes 0=no: '))
+    if after_refactor == 1:
+        # Import Builders
+        from package.refactor.menu.menu_director import MenuDirector
+        from package.refactor.menu.sqlite_menu_builder import SqliteMenuBuilder
+        from package.refactor.menu.mysql_menu_builder import MySQLMenuBuilder
+    else:
+        # Import Menu (Before Refactor)
+        from package.cli import Menu
+        # Import Database (Before Refactor)
+        from package.database.mysqldb import MySQLDB
+
     unittest.main(verbosity=2)
