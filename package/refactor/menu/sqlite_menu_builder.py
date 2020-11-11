@@ -18,7 +18,7 @@ class SqliteMenuBuilder(MenuBuilder):
 
     def build_menu(self):
         # Database
-        database = Database('analysis.db')
+        database = Database('unittest.db')
         database.set_connect_behaviour(SqliteConnect())
         database.set_setup_behaviour(SqliteSetup())
         database.set_query_behaviour(SqliteQuery())

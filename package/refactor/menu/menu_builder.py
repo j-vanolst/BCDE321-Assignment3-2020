@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
+
 class MenuBuilder(metaclass=ABCMeta):
     @abstractmethod
     def __init__(self):
@@ -7,8 +8,8 @@ class MenuBuilder(metaclass=ABCMeta):
 
     @abstractmethod
     def build_menu(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def get_menu(self):
-        pass
+        raise NotImplementedError

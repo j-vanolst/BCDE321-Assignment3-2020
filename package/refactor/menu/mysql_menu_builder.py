@@ -3,7 +3,7 @@ from .menu_builder import MenuBuilder
 from package.refactor.database.database import Database
 from package.graph.grapher import Grapher
 from package.model.analyser import JSAnalyser
-from package.cli import Menu
+from package.refactor.menu.cli import Menu
 
 # Import Database Behaviours
 from package.refactor.database.behaviours.setup_behaviour import MySQLSetup
@@ -17,8 +17,6 @@ class MySQLMenuBuilder(MenuBuilder):
         super().__init__()
 
     def build_menu(self):
-        # Menu
-        menu = Menu()
         # Database
         database = Database('bcde321_assignment',
                             '127.0.0.1', 'root', 'password')
@@ -30,10 +28,8 @@ class MySQLMenuBuilder(MenuBuilder):
         grapher = Grapher()
         # Analyser
         analyser = JSAnalyser()
-
-        menu.db = database
-        menu.grapher = grapher
-        menu.analyser = analyser
+        # Menu
+        menu = Menu(database, analyser, grapher)
 
         self.menu = menu
 

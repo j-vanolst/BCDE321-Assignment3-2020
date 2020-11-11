@@ -22,6 +22,8 @@ class Menu(Cmd):
         self.analyser = analyser
         self.grapher = grapher
 
+        self.db.setup()
+
     def do_add_record(self, path: str):
         """
         Syntax: add_record [path]
@@ -80,7 +82,7 @@ class Menu(Cmd):
         """
         sql = f'delete from analysis where path="{path}"'
         result = self.db.query(sql)
-        
+
         return result
 
     def do_list_records(self, line):
@@ -96,7 +98,7 @@ class Menu(Cmd):
         else:
             for aResult in results:
                 print(aResult)
-        
+
         return results
 
     def do_analyse(self, path: str):
