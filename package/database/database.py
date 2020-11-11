@@ -20,16 +20,16 @@ class Database(metaclass=ABCMeta):
 
     @abstractmethod
     def connect(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def query(self, sql: str):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def fetch(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def setup(self):
-        pass
+        raise NotImplementedError

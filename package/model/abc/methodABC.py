@@ -8,16 +8,16 @@ class MethodABC(metaclass=ABCMeta):
 
     @abstractmethod
     def add_parameter(self, newParameter):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def find_parameters(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def get_name(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def get_parameters(self):
-        pass
+        raise NotImplementedError

@@ -7,7 +7,7 @@ import sqlite3
 class QueryBehaviour(metaclass=ABCMeta):
     @abstractmethod
     def query(self, ref, sql):
-        pass
+        raise NotImplementedError
 
 
 class SqliteQuery(QueryBehaviour):

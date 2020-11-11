@@ -24,32 +24,32 @@ class DatabaseABC(metaclass=ABCMeta):
 
     @abstractmethod
     def set_setup_behaviour(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def set_connect_behaviour(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def set_query_behaviour(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def set_fetch_behaviour(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def connect(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def query(self, sql: str):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def fetch(self, sql: str):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def setup(self):
-        pass
+        raise NotImplementedError

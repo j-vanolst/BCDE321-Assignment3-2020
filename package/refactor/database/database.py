@@ -8,16 +8,7 @@ class Database(DatabaseABC):
                  address: str = None,
                  username: str = None,
                  password: str = None):
-        self.database = database
-        self.address = address
-        self.username = username
-        self.password = password
-
-        self.db = None
-        self.setup_behaviour = None
-        self.connect_behaviour = None
-        self.query_behaviour = None
-        self.fetch_behaviour = None
+        super().__init__(database, address, username, password)
 
     def set_setup_behaviour(self, setup_behaviour):
         self.setup_behaviour = setup_behaviour

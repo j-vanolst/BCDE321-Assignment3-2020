@@ -8,7 +8,10 @@ class SqliteDB(Database):
         super().__init__(database)
 
     def connect(self):
-        self.db = sqlite3.connect(self.database)
+        try:
+            self.db = sqlite3.connect(self.database)
+        except Exception:
+            return False
         return True
 
     def query(self, sql: str):

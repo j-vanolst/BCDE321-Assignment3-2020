@@ -10,36 +10,36 @@ class ClassABC(metaclass=ABCMeta):
 
     @abstractmethod
     def add_method(self, newMethod):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def find_methods(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def add_attribute(self, newAttribute):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def find_attributes(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def get_name(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def get_attributes(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def get_methods(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def method_count(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def attribute_count(self):
-        pass
+        raise NotImplementedError

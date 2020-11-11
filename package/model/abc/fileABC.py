@@ -10,24 +10,24 @@ class FileABC(metaclass=ABCMeta):
 
     @abstractmethod
     def add_class(self, newClass):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def find_classes(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def get_classes(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def class_count(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def method_count(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def attribute_count(self):
-        pass
+        raise NotImplementedError

@@ -10,10 +10,8 @@ filename_regex = r'(?<=[a-zA-Z0-9])*[a-zA-Z0-9]+\.[a-zA-Z0-9]*'
 
 class JSAnalyser(Analyser):
 
-    def __init__(self, path = '.'):
+    def __init__(self, path='.'):
         super().__init__(path)
-        self.filenames = []
-        self.files = []
 
         self.get_filenames()
         self.read_files()
@@ -22,6 +20,7 @@ class JSAnalyser(Analyser):
         '''Returns a list of all javascript files recursively
         from a given path'''
         # Check if the supplied path is a folder or a directory
+        self.filenames = []
         if os.path.isdir(self.path):
             # print(f'Finding JavaScript files in: {self.path}...')
             for folder in os.walk(self.path):
@@ -39,6 +38,7 @@ class JSAnalyser(Analyser):
 
     def read_files(self):
         '''Returns a list of all lines in a specified file'''
+        self.files = []
         for aFilename in self.filenames:
             try:
                 file = open(aFilename, 'r')
@@ -49,6 +49,7 @@ class JSAnalyser(Analyser):
                     f'File: {os.path.join(os.path.abspath(self.path))}'
                     f' not found.')
                 lines = []
+                return False
 
             if (file):
                 location = os.path.join(os.path.abspath(aFilename))
@@ -97,7 +98,6 @@ class JSAnalyser(Analyser):
         for aFile in self.files:
             output_string += str(aFile)
         return output_string
-    
+
     def set_path(self, path: str):
         self.path = path
-

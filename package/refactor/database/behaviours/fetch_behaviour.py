@@ -7,7 +7,7 @@ import sqlite3
 class FetchBehaviour(metaclass=ABCMeta):
     @abstractmethod
     def fetch(self, ref, sql):
-        pass
+        raise NotImplementedError
 
 
 class SqliteFetch(FetchBehaviour):

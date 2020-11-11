@@ -1,26 +1,36 @@
 from .menu_builder import MenuBuilder
 
-from package.database.sqlitedb import SqliteDB
+from package.refactor.database.database import Database
 from package.graph.grapher import Grapher
 from package.model.analyser import JSAnalyser
-from package.cli import Menu
+from package.refactor.menu.cli import Menu
+
+# Import Database Behaviours
+from package.refactor.database.behaviours.setup_behaviour import SqliteSetup
+from package.refactor.database.behaviours.query_behaviour import SqliteQuery
+from package.refactor.database.behaviours.connect_behaviour import SqliteConnect
+from package.refactor.database.behaviours.fetch_behaviour import SqliteFetch
+
 
 class SqliteMenuBuilder(MenuBuilder):
     def __init__(self):
         super().__init__()
-        
-    def build_menu(self):
-        menu = Menu()
-        database = SqliteDB('unittest.db')
-        grapher = Grapher()
-        analyser = JSAnalyser()
 
-        menu.db = database
-        menu.grapher = grapher
-        menu.analyser = analyser
+    def build_menu(self):
+        # Database
+        database = Database('analysis.db')
+        database.set_connect_behaviour(SqliteConnect())
+        database.set_setup_behaviour(SqliteSetup())
+        database.set_query_behaviour(SqliteQuery())
+        database.set_fetch_behaviour(SqliteFetch())
+        # Grapher
+        grapher = Grapher()
+        # Analyser
+        analyser = JSAnalyser()
+        # Menu
+        menu = Menu(database, analyser, grapher)
 
         self.menu = menu
-        
+
     def get_menu(self):
         return self.menu
-

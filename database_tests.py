@@ -1,17 +1,6 @@
 import unittest
 from os import remove
 
-# Import Database Models
-from package.database.sqlitedb import SqliteDB
-from package.database.mysqldb import MySQLDB
-from package.refactor.database.database import Database
-
-# Import Database Behaviours
-from package.refactor.database.behaviours.setup_behaviour import SqliteSetup, MySQLSetup
-from package.refactor.database.behaviours.query_behaviour import SqliteQuery, MySQLQuery
-from package.refactor.database.behaviours.connect_behaviour import SqliteConnect, MySQLConnect
-from package.refactor.database.behaviours.fetch_behaviour import SqliteFetch, MySQLFetch
-
 
 class TestSqliteDatabase(unittest.TestCase):
     def setUp(self):
@@ -35,9 +24,19 @@ class TestSqliteDatabase(unittest.TestCase):
         result = self.database.setup()
         self.assertTrue(result)
 
+    def test_database_setup_fail(self):
+        self.database.database = 'readonly/unittest.db'
+        result = self.database.setup()
+        self.assertFalse(result)
+
     def test_database_connect(self):
         result = self.database.connect()
         self.assertTrue(result)
+
+    def test_database_connect_fail(self):
+        self.database.database = 'readonly/unittest.db'
+        result = self.database.connect()
+        self.assertFalse(result)
 
     def test_database_query_fail(self):
         sql = "incorrect query"
@@ -97,7 +96,6 @@ class TestMySQLDatabase(unittest.TestCase):
     def test_database_setup_fail(self):
         self.database.password = 'incorrect'
         result = self.database.setup()
-        print(result)
         self.assertFalse(result)
 
     def test_database_query_fail(self):
@@ -133,4 +131,18 @@ class TestMySQLDatabase(unittest.TestCase):
 
 if __name__ == '__main__':
     after_refactor = int(input('Run refactored version of tests? 1=yes 0=no'))
+
+    if after_refactor == 1:
+        # Import Database
+        from package.refactor.database.database import Database
+        # Import Database Behaviours
+        from package.refactor.database.behaviours.setup_behaviour import SqliteSetup, MySQLSetup
+        from package.refactor.database.behaviours.query_behaviour import SqliteQuery, MySQLQuery
+        from package.refactor.database.behaviours.connect_behaviour import SqliteConnect, MySQLConnect
+        from package.refactor.database.behaviours.fetch_behaviour import SqliteFetch, MySQLFetch
+    else:
+        # Import Database
+        from package.database.sqlitedb import SqliteDB
+        from package.database.mysqldb import MySQLDB
+
     unittest.main(verbosity=2)

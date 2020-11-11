@@ -7,7 +7,7 @@ import sqlite3
 class ConnectBehaviour(metaclass=ABCMeta):
     @abstractmethod
     def connect(self, ref):
-        pass
+        raise NotImplementedError
 
 
 class SqliteConnect(ConnectBehaviour):
