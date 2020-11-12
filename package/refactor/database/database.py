@@ -2,12 +2,13 @@ from .database_abc import DatabaseABC
 
 
 class Database(DatabaseABC):
-
-    def __init__(self,
-                 database: str,
-                 address: str = None,
-                 username: str = None,
-                 password: str = None):
+    def __init__(
+        self,
+        database: str,
+        address: str = None,
+        username: str = None,
+        password: str = None,
+    ):
         super().__init__(database, address, username, password)
 
     def set_setup_behaviour(self, setup_behaviour):

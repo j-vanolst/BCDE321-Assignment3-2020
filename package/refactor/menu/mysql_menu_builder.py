@@ -18,8 +18,9 @@ class MySQLMenuBuilder(MenuBuilder):
 
     def build_menu(self):
         # Database
-        database = Database('bcde321_assignment',
-                            '127.0.0.1', 'root', 'password')
+        database = Database(
+            "bcde321_assignment", "127.0.0.1", "root", "password"
+        )
         database.set_connect_behaviour(MySQLConnect())
         database.set_setup_behaviour(MySQLSetup())
         database.set_query_behaviour(MySQLQuery())

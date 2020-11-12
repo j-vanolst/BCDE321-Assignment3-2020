@@ -8,7 +8,9 @@ from package.refactor.menu.cli import Menu
 # Import Database Behaviours
 from package.refactor.database.behaviours.setup_behaviour import SqliteSetup
 from package.refactor.database.behaviours.query_behaviour import SqliteQuery
-from package.refactor.database.behaviours.connect_behaviour import SqliteConnect
+from package.refactor.database.behaviours.connect_behaviour import (
+    SqliteConnect,
+)
 from package.refactor.database.behaviours.fetch_behaviour import SqliteFetch
 
 
@@ -18,7 +20,7 @@ class SqliteMenuBuilder(MenuBuilder):
 
     def build_menu(self):
         # Database
-        database = Database('unittest.db')
+        database = Database("unittest.db")
         database.set_connect_behaviour(SqliteConnect())
         database.set_setup_behaviour(SqliteSetup())
         database.set_query_behaviour(SqliteQuery())

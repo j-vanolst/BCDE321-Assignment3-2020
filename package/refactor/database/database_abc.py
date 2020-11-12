@@ -3,11 +3,12 @@ from abc import ABCMeta, abstractmethod
 
 class DatabaseABC(metaclass=ABCMeta):
     def __init__(
-            self,
-            database: str,
-            address: str = None,
-            username: str = None,
-            password: str = None):
+        self,
+        database: str,
+        address: str = None,
+        username: str = None,
+        password: str = None,
+    ):
         self.database = database
         self.address = address
         self.username = username
@@ -19,8 +20,10 @@ class DatabaseABC(metaclass=ABCMeta):
         self.fetch_behaviour = None
 
     def __str__(self):
-        return f'Database: {self.database} Address: {self.address}' \
-               f' Username: {self.username} Password: {self.password}'
+        return (
+            f"Database: {self.database} Address: {self.address}"
+            f" Username: {self.username} Password: {self.password}"
+        )
 
     @abstractmethod
     def set_setup_behaviour(self):

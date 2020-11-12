@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class Cmd():
+class Cmd:
     def __init__(self):
         self.db = None
         self.analyser = None
@@ -15,20 +15,20 @@ class Cmd():
     def loop(self):
         self.db.print()
         self.analyser.print()
-        print('LOOPING...')
+        print("LOOPING...")
 
 
-class Database():
+class Database:
     def print(self):
-        print('Im a database')
+        print("Im a database")
 
 
-class Analyser():
+class Analyser:
     def print(self):
-        print('Im an analyser')
+        print("Im an analyser")
 
 
-class Director():
+class Director:
     def __init__(self, builder):
         self.builder = builder
 
@@ -69,7 +69,7 @@ class MainBuilder(Builder):
         return self.cmd
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     builder = MainBuilder()
     director = Director(builder)
 

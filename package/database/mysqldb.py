@@ -9,13 +9,11 @@ class MySQLDB(Database):
 
     def connect(self):
         self.db = mysql.connector.connect(
-            host=self.address, user=self.username, password=self.password, database=self.database)
-        # try:
-        #     self.db = mysql.connector.connect(
-        #         host=self.address, username=self.username, password=self.password, database=self.database)
-
-        # except Exception:
-        #     return False
+            host=self.address,
+            user=self.username,
+            password=self.password,
+            database=self.database,
+        )
 
         return True
 
@@ -60,7 +58,12 @@ class MySQLDB(Database):
         except Exception:
             return False
 
-        sql = "create table if not exists analysis (id integer primary key auto_increment, path varchar(100), fileCount integer, classCount integer, attributeCount integer, methodCount integer)"
+        sql = (
+            "create table if not exists analysis "
+            "(id integer primary key auto_increment, path varchar(100), "
+            "fileCount integer, classCount integer, attributeCount integer, "
+            "methodCount integer)"
+        )
         if self.db:
             cursor = self.db.cursor()
             cursor.execute(sql)

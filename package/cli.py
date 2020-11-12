@@ -19,11 +19,10 @@ from package.graph.grapher import Grapher
 
 
 class Menu(Cmd):
-
     def __init__(self):
         Cmd.__init__(self)
         self.prompt = ">>> "
-        self.db = SqliteDB('unittest.db')
+        self.db = SqliteDB("unittest.db")
         self.analyser = JSAnalyser()
         self.grapher = Grapher()
 
@@ -47,14 +46,15 @@ class Menu(Cmd):
         attribute_count = self.analyser.attribute_count()
         method_count = self.analyser.method_count()
 
-        sql = f'insert into analysis (path, fileCount, classCount,' \
-              f' attributeCount, methodCount) values ' \
-              f'("{path}", {file_count}, {class_count},' \
-              f' {attribute_count}, {method_count})'
-        
+        sql = (
+            f"insert into analysis (path, fileCount, classCount,"
+            f" attributeCount, methodCount) values "
+            f'("{path}", {file_count}, {class_count},'
+            f" {attribute_count}, {method_count})"
+        )
+
         result = self.db.query(sql)
         return result
-
 
     def do_get_record(self, path: str):
         """
@@ -64,18 +64,22 @@ class Menu(Cmd):
         record in the DB
         :return: None
         """
-        sql = f'select path, fileCount, classCount, attributeCount,' \
-              f' methodCount from analysis where path="{path}"'
+        sql = (
+            f"select path, fileCount, classCount, attributeCount,"
+            f' methodCount from analysis where path="{path}"'
+        )
         results = self.db.fetch(sql)
-        if (len(results) == 0):
-            print(f'No records found for path: {path}...')
+        if len(results) == 0:
+            print(f"No records found for path: {path}...")
         else:
             for aResult in results:
-                print(f'Path: {aResult[0]}\n'
-                      f'File Count: {aResult[1]}\n'
-                      f'Class Count: {aResult[2]}\n'
-                      f'Attribute Count: {aResult[3]}\n'
-                      f'Method Count: {aResult[4]}')
+                print(
+                    f"Path: {aResult[0]}\n"
+                    f"File Count: {aResult[1]}\n"
+                    f"Class Count: {aResult[2]}\n"
+                    f"Attribute Count: {aResult[3]}\n"
+                    f"Method Count: {aResult[4]}"
+                )
         return results
 
     def do_delete_record(self, path: str):
@@ -97,10 +101,10 @@ class Menu(Cmd):
         Lists all stored analysis records in the database
         :return: None
         """
-        sql = f'select path from analysis'
+        sql = f"select path from analysis"
         results = self.db.fetch(sql)
-        if (len(results) == 0):
-            print('No records in the database...')
+        if len(results) == 0:
+            print("No records in the database...")
         else:
             for aResult in results:
                 print(aResult)
@@ -140,7 +144,7 @@ class Menu(Cmd):
         self.grapher.configure_labels()
         self.grapher.add_nodes()
         self.grapher.render()
-        
+
         return True
 
     def do_quit(self, line):

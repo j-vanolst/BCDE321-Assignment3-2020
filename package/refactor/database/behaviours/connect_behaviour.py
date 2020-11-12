@@ -26,7 +26,11 @@ class MySQLConnect(ConnectBehaviour):
             ref.db.close()
         try:
             ref.db = mysql.connector.connect(
-                host=ref.address, user=ref.username, password=ref.password, database=ref.database)
+                host=ref.address,
+                user=ref.username,
+                password=ref.password,
+                database=ref.database,
+            )
         except Exception:
             return False
 

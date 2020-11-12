@@ -43,11 +43,13 @@ class SqliteDB(Database):
         return results
 
     def setup(self):
-        sql = 'create table if not exists analysis' \
-              '(id integer primary key autoincrement,' \
-              'path varchar(100),' \
-              'fileCount integer,' \
-              'classCount integer,' \
-              'attributeCount integer,' \
-              'methodCount integer)'
+        sql = (
+            "create table if not exists analysis"
+            "(id integer primary key autoincrement,"
+            "path varchar(100),"
+            "fileCount integer,"
+            "classCount integer,"
+            "attributeCount integer,"
+            "methodCount integer)"
+        )
         return self.query(sql)
