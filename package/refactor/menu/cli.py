@@ -15,14 +15,12 @@ from cmd import Cmd
 
 
 class Menu(Cmd):
-    def __init__(self, database, analyser, grapher):
+    def __init__(self):
         Cmd.__init__(self)
         self.prompt = ">>> "
-        self.db = database
-        self.analyser = analyser
-        self.grapher = grapher
-
-        self.db.setup()
+        self.db = None
+        self.analyser = None
+        self.grapher = None
 
     def do_add_record(self, path: str):
         """
@@ -146,3 +144,13 @@ class Menu(Cmd):
     def do_quit(self, line):
         print("Quitting...")
         return True
+
+    def set_database(self, database):
+        self.db = database
+        self.db.setup()
+
+    def set_analyser(self, analyser):
+        self.analyser = analyser
+
+    def set_grapher(self, grapher):
+        self.grapher = grapher

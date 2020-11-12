@@ -19,18 +19,21 @@ class SqliteMenuBuilder(MenuBuilder):
         super().__init__()
 
     def build_menu(self):
+        # Menu
+        menu = Menu()
         # Database
         database = Database("unittest.db")
         database.set_connect_behaviour(SqliteConnect())
         database.set_setup_behaviour(SqliteSetup())
         database.set_query_behaviour(SqliteQuery())
         database.set_fetch_behaviour(SqliteFetch())
+        menu.set_database(database)
         # Grapher
         grapher = Grapher()
+        menu.set_grapher(grapher)
         # Analyser
         analyser = JSAnalyser()
-        # Menu
-        menu = Menu(database, analyser, grapher)
+        menu.set_analyser(analyser)
 
         self.menu = menu
 

@@ -17,6 +17,8 @@ class MySQLMenuBuilder(MenuBuilder):
         super().__init__()
 
     def build_menu(self):
+        # Menu
+        menu = Menu()
         # Database
         database = Database(
             "bcde321_assignment", "127.0.0.1", "root", "password"
@@ -25,12 +27,13 @@ class MySQLMenuBuilder(MenuBuilder):
         database.set_setup_behaviour(MySQLSetup())
         database.set_query_behaviour(MySQLQuery())
         database.set_fetch_behaviour(MySQLFetch())
+        menu.set_database(database)
         # Grapher
         grapher = Grapher()
+        menu.set_grapher(grapher)
         # Analyser
         analyser = JSAnalyser()
-        # Menu
-        menu = Menu(database, analyser, grapher)
+        menu.set_analyser(analyser)
 
         self.menu = menu
 

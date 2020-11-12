@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Coverage report</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.ba-throttle-debounce.min.js"></script>
+    <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="jquery.hotkeys.js"></script>
+    <script type="text/javascript" src="coverage_html.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(coverage.index_ready);
+    </script>
+</head>
+<body class="indexfile">
+<div id="header">
+    <div class="content">
+        <h1>Coverage report:
+            <span class="pc_cov">96%</span>
+        </h1>
+        <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
+        <form id="filter_container">
+            <input id="filter" type="text" value="" placeholder="filter..." />
+        </form>
+    </div>
+</div>
+<div class="help_panel">
+    <img id="panel_icon" src="keybd_open.png" alt="Hide keyboard shortcuts" />
+    <p class="legend">Hot-keys on this page</p>
+    <div>
+    <p class="keyhelp">
+        <span class="key">n</span>
+        <span class="key">s</span>
+        <span class="key">m</span>
+        <span class="key">x</span>
+        <span class="key">c</span> &nbsp; change column sorting
+    </p>
+    </div>
+</div>
+<div id="index">
+    <table class="index">
+        <thead>
+            <tr class="tablehead" title="Click to sort">
+                <th class="name left headerSortDown shortkey_n">Module</th>
+                <th class="shortkey_s">statements</th>
+                <th class="shortkey_m">missing</th>
+                <th class="shortkey_x">excluded</th>
+                <th class="right shortkey_c">coverage</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr class="total">
+                <td class="name left">Total</td>
+                <td>776</td>
+                <td>28</td>
+                <td>32</td>
+                <td class="right" data-ratio="748 776">96%</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr class="file">
+                <td class="name left"><a href="all_tests_py.html">all_tests.py</a></td>
+                <td>306</td>
+                <td>28</td>
+                <td>0</td>
+                <td class="right" data-ratio="278 306">91%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package___init___py.html">package\__init__.py</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 0">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_cli_py.html">package\cli.py</a></td>
+                <td>63</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="63 63">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_database___init___py.html">package\database\__init__.py</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 0">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_database_database_py.html">package\database\database.py</a></td>
+                <td>18</td>
+                <td>0</td>
+                <td>4</td>
+                <td class="right" data-ratio="18 18">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_database_mysqldb_py.html">package\database\mysqldb.py</a></td>
+                <td>45</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="45 45">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_database_sqlitedb_py.html">package\database\sqlitedb.py</a></td>
+                <td>33</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="33 33">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_graph___init___py.html">package\graph\__init__.py</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 0">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_graph_grapher_py.html">package\graph\grapher.py</a></td>
+                <td>33</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="33 33">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_model___init___py.html">package\model\__init__.py</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 0">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_model_abc___init___py.html">package\model\abc\__init__.py</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 0">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_model_abc_analyserABC_py.html">package\model\abc\analyserABC.py</a></td>
+                <td>24</td>
+                <td>0</td>
+                <td>9</td>
+                <td class="right" data-ratio="24 24">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_model_abc_classABC_py.html">package\model\abc\classABC.py</a></td>
+                <td>25</td>
+                <td>0</td>
+                <td>9</td>
+                <td class="right" data-ratio="25 25">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_model_abc_fileABC_py.html">package\model\abc\fileABC.py</a></td>
+                <td>19</td>
+                <td>0</td>
+                <td>6</td>
+                <td class="right" data-ratio="19 19">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_model_abc_methodABC_py.html">package\model\abc\methodABC.py</a></td>
+                <td>13</td>
+                <td>0</td>
+                <td>4</td>
+                <td class="right" data-ratio="13 13">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_model_analyser_py.html">package\model\analyser.py</a></td>
+                <td>69</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="69 69">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_model_class_model_py.html">package\model\class_model.py</a></td>
+                <td>47</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="47 47">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_model_file_py.html">package\model\file.py</a></td>
+                <td>53</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="53 53">100%</td>
+            </tr>
+            <tr class="file">
+                <td class="name left"><a href="package_model_method_py.html">package\model\method.py</a></td>
+                <td>28</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="28 28">100%</td>
+            </tr>
+        </tbody>
+    </table>
+    <p id="no_rows">
+        No items found using the specified filter.
+    </p>
+</div>
+<div id="footer">
+    <div class="content">
+        <p>
+            <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3</a>,
+            created at 2020-11-12 16:36 +1300
+        </p>
+    </div>
+</div>
+</body>
+</html>

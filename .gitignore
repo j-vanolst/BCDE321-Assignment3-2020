@@ -5,3 +5,7 @@ package/model/__pycache__/
 package/refactor/__pycache__/
 package/refactor/database/__pycache__/
 package/refactor/menu/__pycache__/
+package/model/abc/__pycache__/
+package/refactor/database/behaviours/__pycache__/
+output/
+.coverage
